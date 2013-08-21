@@ -321,8 +321,10 @@ class LoopAll {
   TMVA::Reader *tmvaReaderID_MIT_Barrel, *tmvaReaderID_MIT_Endcap;
   TMVA::Reader *tmvaReader_dipho_MIT;
   TMVA::Reader *tmvaReaderID_Single_Barrel, *tmvaReaderID_Single_Endcap;
+  TMVA::Reader *tmvaReaderID_2013_Barrel, *tmvaReaderID_2013_Endcap;
 
   Float_t photonIDMVANew(Int_t, Int_t, TLorentzVector &, const char*);
+  Float_t photonIDMVA2013(Int_t, Int_t, TLorentzVector &, const char*);
 
   Float_t tmva_photonid_pfchargedisogood03;
   Float_t tmva_photonid_pfchargedisobad03;
@@ -333,6 +335,7 @@ class LoopAll {
   Float_t tmva_photonid_etawidth;
   Float_t tmva_photonid_phiwidth;
   Float_t tmva_photonid_r9;
+  Float_t tmva_photonid_scrawe;
   Float_t tmva_photonid_s4ratio;
   Float_t tmva_photonid_lambdaratio;
   Float_t tmva_photonid_sceta;
@@ -1183,7 +1186,8 @@ void SetBranchAddress_pho_passcuts_lead(TTree * tree) { tree->SetBranchAddress("
 void SetBranchAddress_pho_cutlevel_sublead(TTree * tree) { tree->SetBranchAddress("pho_cutlevel_sublead", &pho_cutlevel_sublead, &b_pho_cutlevel_sublead ); };
 void SetBranchAddress_pho_passcuts_sublead(TTree * tree) { tree->SetBranchAddress("pho_passcuts_sublead", &pho_passcuts_sublead, &b_pho_passcuts_sublead ); };
 
-void doJetMatching(TClonesArray & reco, TClonesArray & gen, Bool_t * match_flag, Bool_t * match_vbf_flag, Float_t * match_pt, Float_t * match_dr, Float_t maxDr=0.4 );
+void doJetMatching(TClonesArray & reco, TClonesArray & gen, Bool_t * match_flag, Bool_t * match_vbf_flag, Bool_t * match_b_flag, 
+		   Float_t * match_pt, Float_t * match_dr, Float_t maxDr=0.4 );
 
 std::pair<int, int> Select2HighestPtJets(TLorentzVector& leadpho, TLorentzVector& subleadpho, Bool_t * jetid_flags=0);
 int RescaleJetEnergy(bool force=false);

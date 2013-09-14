@@ -27,6 +27,7 @@ USERINCLUDES += -I $(CMSSW_BASE)/src/ -I $(CMSSW_RELEASE_BASE)/src/
 USERLIBS += -L$(BOOST_PATH)/lib/ -lboost_regex -lboost_program_options 
 USERINCLUDES += -I$(ROOFITSYS)/include
 USERLIBS += -L$(ROOFITSYS)/lib -lRooFit -lRooFitCore
+USERLIBS += -L$(CMSSW_BASE)/lib 
 endif
 
 USERLIBS += $(shell root-config --glibs) -lTMVA -lMinuit -lFoam -lRooFit -lRooFitCore -lMathMore 
@@ -41,6 +42,7 @@ INCLUDE += $(USERINCLUDES)
 CXXFLAGS += $(INCLUDE)
 
 LIBS += $(USERLIBS)
+LIBS += -L$(CMSSW_BASE)/lib/$(SCRAM_ARCH)/ -lHiggsAnalysisCombinedLimit
 
 # this is where you  would normaly have the lib, bin and source directories
 LIBDIR = $(BASEDIR)/lib

@@ -73,7 +73,29 @@ def preFlight(f):
     procs = set()
     masses = set()
     cats = set()
+    wspaces = dict()
     for i in f.GetListOfKeys():
+        #if i.GetClassName() == 'RooWorkspace':
+        #    ws = wspaces[i.GetName()] = f.Get(i.GetName())
+        #    argset = ws.allPdfs()
+        #    iter = argset.createIterator()
+        #    var = iter.Next()
+        #    while var :
+        #        print var.GetName()
+        #        var = iter.Next()
+        # code from Matt
+        #RooRealVar *MH = (RooRealVar*)w_sig->var("MH");
+        #    RooAbsPdf *sigPDF = (RooAbsPdf*)w_sig->pdf(Form("sigpdfrelcat%d_allProcs",cat));
+        #    MH->setVal(125);
+        #    sigPDF->plotOn(plot,Normalization(1.0,RooAbsReal::RelativeExpected),LineColor(kBlue),LineWidth(3));
+        #    sigPDF->plotOn(plot,Normalization(1.0,RooAbsReal::RelativeExpected),LineColor(kBlue),LineWidth(3),FillColor(38),FillStyle(3001),DrawOption("F"));
+        #    TObject *sigLeg = (TObject*)plot->getObject(plot->numItems()-1);
+        #    leg->AddEntry(sigLeg,"Sig model m_{H}=125GeV","L");
+        #
+        #combine reads: hggpdfsmrel_proc_catn
+        #then by default combine reads corresponding norm: hggpdfsmrel_proc_catn_norm
+
+                
         match = re.search('sig_(?P<proc>\w+)_mass_m(?P<mass>[0-9]*\.?[0-9]+)_.*_cat(?P<cat>[0-9]+)$', i.GetName())
         if match:
             d = match.groupdict()
